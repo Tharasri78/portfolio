@@ -9,38 +9,44 @@ dotenv.config();
 
 const app = express();
 
-// ===== MIDDLEWARE =====
-app.use(cors());
-app.use(express.json());
-const cors = require("cors");
+/* ================== MIDDLEWARE (ORDER MATTERS) ================== */
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+// CORS — MUST be before routes
+app.use(
+  cors({
+    origin: "*", // allow all for now
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
-// VERY IMPORTANT: handle preflight explicitly
+// Handle preflight explicitly
 app.options("*", cors());
 
-// ===== ROUTES =====
+// Parse JSON body
+app.use(express.json());
+
+/* ================== ROUTES ================== */
+
+// Contact API
 app.use("/api/contact", contactRoutes);
 
-// ===== TEST ROUTE =====
+// Health check
 app.get("/", (req, res) => {
-  res.send("API running");
+  res.status(200).send("API running");
 });
 
-// ===== DB + SERVER =====
+/* ================== DB + SERVER ================== */
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
-    app.listen(PORT, () =>
-      console.log(`Server running on port ${PORT}`)
-    );
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   })
   .catch((err) => {
     console.error("MongoDB connection failed:", err.message);
