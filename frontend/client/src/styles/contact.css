@@ -1,0 +1,85 @@
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 140px 0;
+}
+
+/* GRID LAYOUT */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* LEFT CONTENT */
+.contact-info h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.contact-info p {
+  max-width: 520px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* FORM */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+/* BUTTON */
+.contact-form button {
+  align-self: flex-start;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* STATUS MESSAGE */
+.contact-status {
+  font-size: 0.9rem;
+  margin-top: 6px;
+  color: var(--accent);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .contact-info h1 {
+    font-size: 2.4rem;
+  }
+}

@@ -1,0 +1,92 @@
+/* ===== PROJECTS ===== */
+
+.projects-section h1 {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 90px;
+}
+
+/* STACK PROJECTS */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+/* SINGLE PROJECT ROW */
+.project-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* CONTENT */
+.project-content {
+  max-width: 560px;
+}
+
+.project-tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(165, 164, 136, 0.15);
+  color: #6d6c52;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project-content h3 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.project-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* ACTION BUTTONS */
+.project-actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 18px;
+}
+
+/* IMAGE */
+.project-media img {
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ALTERNATE LAYOUT */
+.project-row:nth-child(even) {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.project-row:nth-child(even) .project-content {
+  order: 2;
+}
+
+.project-row:nth-child(even) .project-media {
+  order: 1;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .project-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .project-content {
+    max-width: 100%;
+  }
+
+  .project-actions {
+    justify-content: center;
+  }
+}
