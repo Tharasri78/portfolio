@@ -36,7 +36,6 @@ app.get("/", (req, res) => {
   res.status(200).send("API running");
 });
 
-/* ================== DB + SERVER ================== */
 
 const PORT = process.env.PORT || 5000;
 
