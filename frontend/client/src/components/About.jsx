@@ -11,13 +11,10 @@ export default function About() {
          
 
           <p className="about-description">
-            I’m Tharasri, a MERN Stack Developer focused on creating
-            maintainable full-stack applications with clean architecture,
-            performance in mind, and modern UI practices.
-          </p>
+I’m Tharasri, a MERN stack developer who builds complete web applications with clean frontend–backend integration, readable code, and maintainable systems.          </p>
 
           <blockquote className="about-quote">
-            “Design is intelligence made visible. Code brings it to life.”
+            {/* “Design is intelligence made visible. Code brings it to life.” */}
           </blockquote>
         </div>
 

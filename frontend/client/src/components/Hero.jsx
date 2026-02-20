@@ -1,4 +1,4 @@
-import profile from "../assets/profile.JPG";
+import profile from "../assets/profile.png";
 
 export default function Hero() {
   return (
@@ -7,7 +7,7 @@ export default function Hero() {
         
         {/* LEFT CONTENT */}
         <div className="hero-content">
-          <span className="hero-badge">MERN Stack Developer</span>
+          {/* <span className="hero-badge">MERN Stack Developer</span> */}
 
           <h1 className="hero-title">
             I build <span>scalable</span><br />
@@ -15,10 +15,9 @@ export default function Hero() {
             that actually work.
           </h1>
 
-          <p className="hero-subtitle">
-            Hi, I’m <strong>Tharasri</strong> — a full-stack developer focused on
-            clean architecture, modern UI, and real-world MERN applications.
-          </p>
+<p className="hero-subtitle">
+  MERN stack developer focused on building deployable, real-world applications.
+</p>
 
           <div className="hero-actions">
             <a href="#projects" className="btn primary">
