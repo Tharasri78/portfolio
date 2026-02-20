@@ -60,9 +60,7 @@ export default function Projects() {
               <h3>Microblogging Platform</h3>
 
               <p>
-                A MERN stack application for creating and displaying short posts
-                using RESTful APIs and MongoDB.
-              </p>
+A MERN microblogging platform for creating and sharing posts, powered by a REST API backend and a clean, responsive React frontend.              </p>
 
               <div className="project-actions">
                 <a
