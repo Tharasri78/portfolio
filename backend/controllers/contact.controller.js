@@ -14,23 +14,21 @@ export const createContact = async (req, res) => {
 
     // SMTP Transport (Render-safe)
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
-    // Force verification
-    await transporter.verify();
-    console.log("SMTP connection OK");
+    
 
     // Send mail
     await transporter.sendMail({
-      from: `"HR via Portfolio" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      from: `"HR via Portfolio" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       replyTo: email,
       subject: "New Contact Message",
       html: `
