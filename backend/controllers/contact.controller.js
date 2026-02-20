@@ -2,6 +2,8 @@ import Contact from "../models/contact.model.js";
 import nodemailer from "nodemailer";
 
 export const createContact = async (req, res) => {
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log("EMAIL_PASS LENGTH:", process.env.EMAIL_PASS?.length);
   try {
     const { name, email, message } = req.body;
 
@@ -12,23 +14,26 @@ export const createContact = async (req, res) => {
     // Save to DB
     await Contact.create({ name, email, message });
 
-    // SMTP Transport (Render-safe)
+    // ENV check (important)
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      throw new Error("Email credentials missing");
+    }
+
+    // ✅ CORRECT Gmail transporter
     const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
+  host: "smtp.gmail.com",
   port: 587,
   secure: false,
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
-    
-
     // Send mail
     await transporter.sendMail({
-      from: `"HR via Portfolio" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
       replyTo: email,
       subject: "New Contact Message",
       html: `
@@ -43,7 +48,7 @@ export const createContact = async (req, res) => {
       message: "Message sent successfully",
     });
   } catch (err) {
-    console.error("CONTACT ERROR:", err);
+    console.error("CONTACT ERROR:", err.message);
     res.status(500).json({ message: "Server error" });
   }
 };
