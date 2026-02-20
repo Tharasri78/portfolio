@@ -41,7 +41,7 @@ export default function Projects() {
           {/* PROJECT 2 */}
           <div className="project-row">
             <div className="project-content">
-              <span className="project-tag"></span>
+              {/* <span className="project-tag"></span> */}
 
               <h3>Portfolio Website</h3>
 
