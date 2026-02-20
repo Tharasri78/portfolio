@@ -1,36 +1,4 @@
-import { useState } from "react";
-import { sendContactMessage } from "../services/api";
-
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatus("");
-
-    try {
-      await sendContactMessage(form);
-      setStatus("Message sent successfully");
-      setForm({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("Failed to send message. Try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <section id="contact" className="section contact-section">
       <div className="container contact-layout">
@@ -43,13 +11,25 @@ export default function Contact() {
           </p>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          action="https://formsubmit.co/tharusree7@gmail.com"
+          method="POST"
+        >
+          {/* FormSubmit config */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="New Portfolio Contact" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://portfolio-xi-livid-95.vercel.app/#contact"
+          />
+
           <input
             type="text"
             name="name"
             placeholder="Your Name"
-            value={form.name}
-            onChange={handleChange}
             required
           />
 
@@ -57,8 +37,6 @@ export default function Contact() {
             type="email"
             name="email"
             placeholder="Your Email"
-            value={form.email}
-            onChange={handleChange}
             required
           />
 
@@ -66,17 +44,14 @@ export default function Contact() {
             name="message"
             placeholder="Your Message"
             rows="5"
-            value={form.message}
-            onChange={handleChange}
             required
           />
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send Message"}
+          <button type="submit">
+            Send Message
           </button>
-
-          {status && <p className="contact-status">{status}</p>}
         </form>
+
       </div>
     </section>
   );
