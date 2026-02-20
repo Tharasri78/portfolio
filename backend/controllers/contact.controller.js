@@ -21,9 +21,8 @@ console.log("EMAIL_PASS LENGTH:", process.env.EMAIL_PASS?.length);
 
     // ✅ CORRECT Gmail transporter
     const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  host: "gmail",
+  
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -48,7 +47,9 @@ console.log("EMAIL_PASS LENGTH:", process.env.EMAIL_PASS?.length);
       message: "Message sent successfully",
     });
   } catch (err) {
-    console.error("CONTACT ERROR:", err.message);
-    res.status(500).json({ message: "Server error" });
-  }
+  console.error("CONTACT ERROR FULL:", err);
+  res.status(500).json({
+    message: err.message,
+  });
+}
 };
