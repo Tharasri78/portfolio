@@ -17,27 +17,26 @@ export const createContact = async (req, res) => {
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
+        pass: process.env.EMAIL_PASS,
+      },
     });
 
-    // Send mail TO YOU
+    // Send mail to YOU
     await transporter.sendMail({
-  from: `"HR via Portfolio" <${process.env.EMAIL_USER}>`, // REQUIRED
-  to: process.env.EMAIL_USER,                              // ALWAYS YOU
-  replyTo: email,                                          // HR EMAIL
-  subject: "New Contact Message",
-  html: `
-    <p><b>Name:</b> ${name}</p>
-    <p><b>Email:</b> ${email}</p>
-    <p><b>Message:</b> ${message}</p>
-  `,
-});
-
+      from: `"HR via Portfolio" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
+      subject: "New Contact Message",
+      html: `
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Message:</b> ${message}</p>
+      `,
+    });
 
     res.status(201).json({
       success: true,
-      message: "Message sent successfully"
+      message: "Message sent successfully",
     });
   } catch (err) {
     console.error(err);
