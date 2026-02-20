@@ -12,16 +12,22 @@ export const createContact = async (req, res) => {
     // Save to DB
     await Contact.create({ name, email, message });
 
-    // Mail transport
+    // SMTP Transport (Render-safe)
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Send mail to YOU
+    // Force verification
+    await transporter.verify();
+    console.log("SMTP connection OK");
+
+    // Send mail
     await transporter.sendMail({
       from: `"HR via Portfolio" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
@@ -39,7 +45,7 @@ export const createContact = async (req, res) => {
       message: "Message sent successfully",
     });
   } catch (err) {
-    console.error(err);
+    console.error("CONTACT ERROR:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
