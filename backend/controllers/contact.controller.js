@@ -21,7 +21,7 @@ console.log("EMAIL_PASS LENGTH:", process.env.EMAIL_PASS?.length);
 
     // ✅ CORRECT Gmail transporter
     const transporter = nodemailer.createTransport({
-  host: "gmail",
+  service: "gmail",
   
   auth: {
     user: process.env.EMAIL_USER,
