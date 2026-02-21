@@ -4,6 +4,7 @@ import jsIcon from "../assets/js.png";
 import reactIcon from "../assets/react.png";
 import nodeIcon from "../assets/nodejs.png";
 import mongoIcon from "../assets/MongoDB.png";
+import expressicon from "../assets/express.png";
 
 const skills = [
   { name: "HTML",  icon: htmlIcon },
@@ -12,6 +13,7 @@ const skills = [
   { name: "React",  icon: reactIcon },
   { name: "Node.js",icon: nodeIcon },
   { name: "MongoDB",  icon: mongoIcon },
+  { name: "Express.js",  icon: expressicon },
 ];
 
 export default function Skills() {
